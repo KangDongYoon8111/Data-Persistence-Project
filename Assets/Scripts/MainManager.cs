@@ -19,8 +19,8 @@ public class MainManager : MonoBehaviour
     private bool m_GameOver = false;
 
     public Text bestScoreText;
-    public Text bestScoreList;
-    public GameObject rankPanel;
+    
+    
     
     // Start is called before the first frame update
     void Start()
@@ -45,8 +45,6 @@ public class MainManager : MonoBehaviour
             SaveData saveData = GameManager.Instance.rankList[0];
             bestScoreText.text = "Best Score : " + saveData.name + " : " + saveData.score;
         }
-        
-        rankPanel.SetActive(false);
     }
 
     private void Update()
@@ -82,31 +80,32 @@ public class MainManager : MonoBehaviour
     public void GameOver()
     {
         m_GameOver = true;
-        GameOverText.SetActive(true);
+        //GameOverText.SetActive(true);
 
         GameManager.Instance.Save(m_Points);
-        rankPanel.SetActive(true);
         BestScoreCheck();
+
+        SceneManager.LoadScene(2);
     }
 
     public void BestScoreCheck()
     {
         if (GameManager.Instance != null && GameManager.Instance.rankList.Count > 0)
         {
-            //bestScoreText.text = "Best Score : " + GameManager.Instance.data.name + " : " + GameManager.Instance.data.score;
-            //SaveData saveData = GameManager.Instance.rankList[0];
-            //bestScore.text = "Best Score : " + saveData.name + " : " + saveData.score;
+            bestScoreText.text = "Best Score : " + GameManager.Instance.data.name + " : " + GameManager.Instance.data.score;
+            SaveData saveData = GameManager.Instance.rankList[0];
+            bestScoreText.text = "Best Score : " + saveData.name + " : " + saveData.score;
 
-            int rank = 1;
-            foreach (SaveData saveData in GameManager.Instance.rankList)
-            {
-                if (rank == 1)
-                {
-                    bestScoreText.text = "Best Score : " + saveData.name + " : " + saveData.score;
-                }
-                bestScoreList.text += $"{rank}. {saveData.name} : {saveData.score}\n";
-                rank++;
-            }
+            // int rank = 1;
+            // foreach (SaveData saveData in GameManager.Instance.rankList)
+            // {
+            //     if (rank == 1)
+            //     {
+            //         bestScoreText.text = "Best Score : " + saveData.name + " : " + saveData.score;
+            //     }
+            //     bestScoreList.text += $"{rank}. {saveData.name} : {saveData.score}\n";
+            //     rank++;
+            // }
         }
     }
 }

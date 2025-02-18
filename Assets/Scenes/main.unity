@@ -549,8 +549,6 @@ MonoBehaviour:
   ScoreText: {fileID: 188020406}
   GameOverText: {fileID: 474497238}
   bestScoreText: {fileID: 2078529056}
-  bestScoreList: {fileID: 1941035542}
-  rankPanel: {fileID: 931055177}
 --- !u!1 &455529321
 GameObject:
   m_ObjectHideFlags: 0
